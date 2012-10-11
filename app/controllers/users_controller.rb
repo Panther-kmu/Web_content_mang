@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # GET /users
+  # GEl     T /users
   # GET /users.json
   def index
     @users = User.all
@@ -43,14 +43,15 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     respond_to do |format|
-      if @user.save
+     if User.where(email:@user.email).count == 0 && @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
+        format.html { redirect_to @user, notice: 'User email not available'}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
+     end
   end
 
   # PUT /users/1
