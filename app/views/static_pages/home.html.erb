@@ -1,11 +1,10 @@
-<% provide(:title, 'Home')%>
-<div class="center hero-unit">
-  <h1>Web Content Management App</h1>
-<p>This is the home page 
+<h1>Web Content Management App</h1>
+<p>This is the home page
   Welcome to the Web Content Management
-  Awesome site made by Nikhat Fatima, for 
+  Awesome site made by Nikhat Fatima, for
   <a href="http://cosmicvent.com/">Cosmicvent Softwares</a></p>
-<%= link_to "Sign up now!", "#", class:"btn btn-large btn-primary"%>
-</div>
 
-<%= link_to image_tag("logo.png", alt:"Cosmicvent"), 'http://cosmicvent.com/'%>
+<%= content_for(:title) do%>
+  This is an awesome title | Home
+<%end%>
+
