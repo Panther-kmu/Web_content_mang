@@ -1,5 +1,7 @@
 WebContent::Application.routes.draw do
 
+  get "users/new"
+
   get "static_pages/signup"
 
   get 'about'  =>  "static_pages#about"
