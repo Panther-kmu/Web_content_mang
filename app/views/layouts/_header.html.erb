@@ -1,10 +1,18 @@
 <header>
-<div class="left",id="logo">
-  <img alt="Cosmicvent" src="/assets/logo.png"/>
-</div>
-<div class="right">
-  <%= link_to "Home",'/'%>
-<%= link_to "Signin",'signin' %>
-<%= link_to "Help",'help' %>
+  <%if session[:user]!=nil%>
+    <div class="left">
+      <img height="55" width ="55"alt=<%=session[:user].name%> src="/assets/usericon.jpg" align:"left"/>
+      <%=session[:user].name%>
+    </div>
+  <%end%>
+  <div class="right">
+    <%= link_to "Home",'/'%>
+    <%= link_to "Help",'/help' %>
+    <%if session[:user]==nil%>
+      <%= link_to "Signin",'/signin' %>
+    <%else%>
+      <%=link_to "Sign Out",'/signout'%>
+    <%end%>
+
   </div>
-  </header>
+</header>

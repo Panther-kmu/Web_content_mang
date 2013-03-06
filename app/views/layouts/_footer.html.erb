@@ -1,11 +1,15 @@
 <footer>
-
+  <div>
+    <img height="50" width="100"alt="Cosmicvent" src="/assets/logo.png" align="left"/>
+  </div>
+  <div align="left">
   <a href="http://cosmicvent.com"><i>CosmicVent Softwares</i></a>
-<div class="right",id="logo" >
-
-  <%= link_to "Sign Up Now!",'signup'%>
-  <%= link_to "Contact",contact_path%>
-  <%= link_to "About Us ",about_path%>
-
-</div>
+  </div>
+  <div align="right",id="logo" >
+    <%if session[:user]==nil%>
+      <%= link_to "Sign Up Now!",'/signup'%>
+    <%end%>
+    <%= link_to "Contact",'/contact'%>
+    <%= link_to "About Us ",'/about'%>
+  </div>
 </footer>

@@ -5,6 +5,7 @@ gem 'bootstrap-sass', '2.0.4'
 gem 'bcrypt-ruby', '3.0.1'
 group :test do
   gem 'rspec-rails', '2.11.0'
+  gem 'factory_girl_rails', '4.1.0'
 end
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -12,6 +13,7 @@ end
 #gem 'sqlite3'
 group :development do
   gem 'annotate', '2.5.0'
+  gem 'pry'
 end
 
 # Gems used only for assets and not required
@@ -21,7 +23,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-   gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end

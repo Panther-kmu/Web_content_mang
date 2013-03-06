@@ -1,7 +1,10 @@
 WebContent::Application.routes.draw do
 
+  resources :users
+
   get "users/new"
 
+  get "home/new"
   get "static_pages/signup"
 
   get 'about'  =>  "static_pages#about"
@@ -11,12 +14,16 @@ WebContent::Application.routes.draw do
   root to: 'static_pages#home'
 
   get 'signin' => 'home#signin'
-  post 'signin' => 'home#login'
+  post 'signin' => 'home#signin'
 
+  get '/signout'=>'home#signout'
   get 'calculator' => 'home#index'
   post 'calculator' => 'home#result'
 
-  get 'signup' => 'home#new'
+  get 'signup' => 'home#signup'
+  post 'signup'=>'home#store'
+
+  post 'store' => 'home#store'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
