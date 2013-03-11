@@ -2,28 +2,39 @@ WebContent::Application.routes.draw do
 
   resources :users
 
-  get "users/new"
+  get "/users/new"
 
-  get "home/new"
-  get "static_pages/signup"
+  post "page"=>"home#add_page"
+  get "page"=>"home#page"
 
-  get 'about'  =>  "static_pages#about"
-  get 'contact' =>  "static_pages#contact"
-  get 'help' =>  "static_pages#help"
+  post "/site"=>"home#site"
+  get "/site"=>"home#site"
+  post "/add_page"=>"home#add_page"
+  get "/sites"=>"home#site"
+  post '/store_site'=>'home#store_site'
+  get "/create_site"=>"home#create_site"
+  get "/home/new"
+  get "/static_pages/signup"
+
+  get '/home' => "site#home"
+
+  get '/about'  =>  "static_pages#about"
+  get '/contact' =>  "static_pages#contact"
+  get '/help' =>  "static_pages#help"
 
   root to: 'static_pages#home'
 
-  get 'signin' => 'home#signin'
-  post 'signin' => 'home#signin'
+  get '/signin' => 'home#signin'
+  post '/signin' => 'home#signin'
 
   get '/signout'=>'home#signout'
   get 'calculator' => 'home#index'
   post 'calculator' => 'home#result'
 
-  get 'signup' => 'home#signup'
-  post 'signup'=>'home#store'
+  get '/signup' => 'home#signup'
+  post '/signup'=>'home#store'
 
-  post 'store' => 'home#store'
+  post '/store' => 'home#store'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

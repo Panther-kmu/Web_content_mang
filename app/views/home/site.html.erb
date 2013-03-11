@@ -1,0 +1,14 @@
+<h2 class="left">
+  <%=@site.title%>
+</h2>
+<hr>
+<h3>
+  List of Pages>>
+</h3>
+<%@pages.each do |p|%>
+  <a href=<%="/page/?id=#{p.id}"%>><%="#{p.title}"%></a>
+  <br>
+<%end%>
+<br>
+<a href="/page/?id=<%="#{@site.id}"%>">Add Page</a>
+<hr>

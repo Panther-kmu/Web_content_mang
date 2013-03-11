@@ -1,8 +1,19 @@
 <h3>
-  step 1>>
+  List of sites >>
 </h3>
-<hr>
-<div class="left">
-  <img height="55" width ="55"alt=<%=session[:user].name%> src="/assets/usericon.jpg"/>
-  <%=session[:user].name%>
+
+<div class="right">
+  <form method="get" action="/create_site">
+    <input type = "submit"  value = "Create Web-site">
+  </form>
 </div>
+<hr>
+<b>
+  <form method="post" action="/site_post">
+    <%@sites.each do |s|%>
+      <a href=<%="/sites/?id=#{s.id}"%>><%="#{s.domain}"%></a>
+      <br>
+    <%end%>
+  </form>
+  <br>
+</b>

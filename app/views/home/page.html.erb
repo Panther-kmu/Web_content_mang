@@ -1,0 +1,22 @@
+<h1>
+  <%=@site.title%>
+</h1>
+<form method="post" action="/add_page">
+  <label> Title of Page:
+    <input name = "page_title">
+  </label>
+  <br>
+  <br>
+
+  <label> Description of Page:
+    <br>
+    <input name = "content" type="text" style="
+    height:140px;
+    width:500px;
+    margin-top:10px;
+    ">
+  </label>
+  <br>
+  <br>
+  <input type="submit" value="SAVE">
+</form>

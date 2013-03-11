@@ -1,19 +1,47 @@
 class HomeController < ApplicationController
-  #session[:user] = nil
+
   def index
-    session[:greeting] = "Hello"
   end
 
-  def result
-    @result = params[:first].to_i + params[:second].to_i
-  end
 
-  def login
-    email_array = params[:email].split(/@/)
-    @name = email_array[0]
-  end
 
   def new
+    @u_id = session[:user].id
+    s = Array.new()
+    Site.all.each do |x|
+      if x.user_id == @u_id
+        s = s<<x
+      end
+    end
+    @sites = s 
+  end
+
+  def site 
+    if params[:id]!=nil
+      @site = Site.find(params[:id])
+      session[:site]=@site
+    else
+      @site = session[:site]
+    end
+    pages = Array.new()
+    Page.all.each do |p|
+      if p.site_id == @site.id
+        pages = pages<<p
+      end
+    end
+    @pages = pages
+  end
+  def add_page
+    @site=session[:site]
+    @page = Page.new(title: params[:page_title],content: params[:content],site_id:@site.id)
+    if @page.valid?
+      @page.save
+    end
+    redirect_to :controller=>'home',:action=>'site'
+  end
+
+  def page
+    @site=Site.find params[:id]
   end
 
   def signup
@@ -23,7 +51,7 @@ class HomeController < ApplicationController
     session[:user]=nil
     redirect_to '/'
   end
-  
+
 
   def signin  
     return if !params.key?(:email)
@@ -31,6 +59,7 @@ class HomeController < ApplicationController
     @confirm_user = @user.authenticate(params[:password])
     if @confirm_user
       session[:user]= @confirm_user
+      @sites = Site.all
       redirect_to :controller=>'home',:action=>'new'
     end
   end
@@ -40,10 +69,22 @@ class HomeController < ApplicationController
     if @user.valid?
       @user.save
       session[:user] = @user
-      redirect_to :controller=>'users',:action=>'new'
+      redirect_to :controller=>'home',:action=>'signin'
     else
       redirect_to :controller=>'home',:action=>'store'
     end
+  end
+  #creation of Sites
+
+  def create_site
+  end
+
+  def store_site
+    @site = Site.new(title:params[:title],domain:params[:domain],user_id:session[:user].id) 
+    Rails.logger.info"++++++++++++++++++#{@site}+++++++++++++"
+    @site.save
+    @sites = Site.all
+    redirect_to :controller=>'home',:action=>'new'
   end
 
 end
